@@ -1,0 +1,20 @@
+{
+  "name": "parcial1practicaweb",
+  "version": "1.0.0",
+  "description": "A continuación, se detallan los pasos para ejecutar este proyecto en el entorno local.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Programacion-con-Tecnologias-Web/Parcial1PracticaWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Programacion-con-Tecnologias-Web/Parcial1PracticaWeb/issues"
+  },
+  "homepage": "https://github.com/Programacion-con-Tecnologias-Web/Parcial1PracticaWeb#readme"
+}

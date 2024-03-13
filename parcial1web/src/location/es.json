@@ -1,0 +1,22 @@
+{
+    "login.loginHeader": "Iniciar sesión",
+    "login.useUniAlpesAccount": "Usa tu cuenta de UniAlpes",
+    "login.emailLabel": "Correo Electrónico",
+    "login.emailInvalidMessage": "Correo electrónico no válido",
+    "login.passwordLabel": "Contraseña",
+    "login.passwordInvalidMessage": "Contraseña no válida",
+    "login.nextButton": "Siguiente",
+    "login.loginButton": "Iniciar Sesión",
+    "login.invalidCredentials": "Correo o contraseña no válidos",
+    "home.catalogHeader": "Catálogo de Carros", 
+    "home.viewDetailsButton": "Ver Detalles",
+    "carDetail.detailHeader": "Detalles del Carro", 
+    "carDetail.madeBy": "Hecho Por", 
+    "carDetail.model": "Modelo", 
+    "carDetail.year": "Año", 
+    "carDetail.available": "Disponible",
+    "carDetail.description": "Descripción", 
+    "carDetail.price": "Precio",
+    "carDetail.saveChanges": "Guardar Cambios", 
+    "carDetail.backToList": "Volver a la Lista" 
+  }
