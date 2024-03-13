@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import loginData from "./login.json";
-import { FormattedMessage, useIntl } from "react-intl";
 
 function Login() {
   const navigate = useNavigate();
@@ -10,9 +9,7 @@ function Login() {
   const [emailValid, setEmailValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
   const [error, setError] = useState("");
-  const [step, setStep] = useState(1); // Estado para controlar el paso actual
-
-  const intl = useIntl(); // Obtiene el objeto intl para traducción
+  const [step, setStep] = useState(1); 
 
   const handleEmailChange = (e) => {
     setFormData({ ...formData, email: e.target.value });
@@ -42,34 +39,34 @@ function Login() {
         setError("");
         setStep(2);
       } else {
-        setError(intl.formatMessage({ id: "login.emailInvalid" })); // Usa intl para obtener el mensaje
+        setError("El correo electrónico ingresado no es válido.");
       }
     } else if (step === 2) {
       if (passwordValid) {
         addUserToJSON();
       } else {
-        setError(intl.formatMessage({ id: "login.passwordInvalid" })); // Usa intl para obtener el mensaje
+        setError("La contraseña ingresada no es válida.");
       }
     }
   };
 
   const generateRandomRole = () => {
-    return Math.random() < 0.5; // Esto asignará true en un 50% de las veces y false en un 50% de las veces
+    return Math.random() < 0.5;
   };
 
   const addUserToJSON = () => {
     if (!emailValid || !passwordValid) {
-      setError(intl.formatMessage({ id: "login.invalidCredentials" })); // Usa intl para obtener el mensaje
+      setError("Credenciales inválidas. Por favor, verifica tus datos.");
       return;
     }
 
     console.log("Agregando usuario al JSON", formData);
-    // Crear un nuevo objeto de usuario
+
     const newUser = {
       id: loginData.length + 1, 
       email: formData.email,
       password: formData.password,
-      role: generateRandomRole(), // Modificamos acá para cambiar el rol
+      role: generateRandomRole(), 
     };
 
     loginData.push(newUser);
@@ -85,15 +82,9 @@ function Login() {
           {step === 1 && (
             <form>
               <div className="form-group">
-                <h2>
-                  <FormattedMessage id="login.loginHeader" />
-                </h2>
-                <h4>
-                  <FormattedMessage id="login.useUniAlpesAccount" />
-                </h4>
-                <label>
-                  <FormattedMessage id="login.emailLabel" />
-                </label>
+                <h2>Acceder</h2>
+                <h4>Utiliza tu cuenta UniAlpes</h4>
+                <label>Correo Electrónico</label>
                 <input
                   type="email"
                   className={`form-control ${emailValid ? "" : "is-invalid"}`}
@@ -102,12 +93,12 @@ function Login() {
                 />
                 {!emailValid && (
                   <div className="invalid-feedback">
-                    <FormattedMessage id="login.emailInvalidMessage" />
+                    El correo electrónico ingresado no es válido.
                   </div>
                 )}
               </div>
               <button type="button" className="btn btn-primary" onClick={changeStep}>
-                <FormattedMessage id="login.nextButton" />
+                Siguiente
               </button>
             </form>
           )}
@@ -115,9 +106,7 @@ function Login() {
             <form>
               <div className="form-group">
                 <h4>{formData.email}</h4>
-                <label>
-                  <FormattedMessage id="login.passwordLabel" />
-                </label>
+                <label>Contraseña</label>
                 <input
                   type="password"
                   className={`form-control ${passwordValid ? "" : "is-invalid"}`}
@@ -126,12 +115,12 @@ function Login() {
                 />
                 {!passwordValid && (
                   <div className="invalid-feedback">
-                    <FormattedMessage id="login.passwordInvalidMessage" />
+                    La contraseña ingresada no es válida.
                   </div>
                 )}
               </div>
               <button type="button" className="btn btn-primary" onClick={changeStep}>
-                <FormattedMessage id="login.loginButton" />
+                Iniciar Sesión
               </button>
             </form>
           )}

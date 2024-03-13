@@ -2,14 +2,11 @@ import { useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FormattedMessage, useIntl } from "react-intl"; 
-import "./carDetail.css";
 
 function CarDetail() {
   const location = useLocation();
   const { state: { car, userRole } } = location;
   const [editable, setEditable] = useState(userRole);
-  const intl = useIntl();
 
   const handleEditToggle = () => {
     setEditable(!editable);
@@ -18,9 +15,7 @@ function CarDetail() {
   return (
     <div className="car-details">
       <Container>
-        <h2>
-          <FormattedMessage id="carDetail.detailHeader" />
-        </h2>
+        <h2>Detalles</h2>
         <Row>
           <Col md={7}>
             <Card.Img variant="top" src={car.image} alt={car.carModel} />
@@ -33,7 +28,7 @@ function CarDetail() {
                   <div>
                     {/* Campos de entrada editable */}
                     <Card.Text>
-                      <FormattedMessage id="carDetail.madeBy" />
+                      Fabricante:{" "}
                       <input
                         type="text"
                         value={car.carMaker}
@@ -41,7 +36,7 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.model" />
+                      Modelo:{" "}
                       <input
                         type="text"
                         value={car.carModel}
@@ -49,7 +44,7 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.year" />
+                      Año:{" "}
                       <input
                         type="text"
                         value={car.carYear}
@@ -57,7 +52,7 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.available" />
+                      Disponible:{" "}
                       <input
                         type="checkbox"
                         checked={car.avalaible}
@@ -65,7 +60,7 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.description" />
+                      Descripción:{" "}
                       <input
                         type="text"
                         value={car.description}
@@ -73,7 +68,7 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.price" />
+                      Precio:{" "}
                       <input
                         type="text"
                         value={car.price}
@@ -81,39 +76,31 @@ function CarDetail() {
                       />
                     </Card.Text>
                     <Button onClick={handleEditToggle}>
-                      <FormattedMessage id="carDetail.saveChanges" />
+                      Guardar Cambios
                     </Button>
                   </div>
                 ) : (
                   <div>
                     {/* Detalles como texto puro */}
                     <Card.Text>
-                      <FormattedMessage id="carDetail.madeBy" />: <p>{car.carMaker}</p>
+                      Fabricante: <p>{car.carMaker}</p>
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.model" />: <p>{car.carModel}</p>
+                      Modelo: <p>{car.carModel}</p>
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.year" />: <p>{car.carYear}</p>
+                      Año: <p>{car.carYear}</p>
                     </Card.Text>
                     <Card.Text>
-                      <FormattedMessage id="carDetail.description" />: <p>{car.description}</p>
+                      Descripción: <p>{car.description}</p>
                     </Card.Text>
                     <Card.Text>
-                    <FormattedMessage id="carDetail.price" />:{" "}
-                    {intl.formatNumber(
-                      parseFloat(car.price.replace("$", "")) *
-                        (intl.locale === "es-ES" || intl.locale === "es" ? 3800 : 1), // 3800 es el factor de conversión
-                      {
-                        style: "currency",
-                        currency: intl.locale === "es" ? "COP" : "USD",
-                      }
-                    )}
-                  </Card.Text>
+                      Precio: {car.price}
+                    </Card.Text>
                   </div>
                 )}
                 <Link to="/Home" state={{ userRole: userRole }}>
-                  <FormattedMessage id="carDetail.backToList" />
+                  Volver a la Lista
                 </Link>
               </Card.Body>
             </Card>
