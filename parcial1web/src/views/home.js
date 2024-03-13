@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from "react";
-import data from "./data.json";
-import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 function Home() {
-    const [cars, setCars] = useState(data);
-    const [selectedCar, setSelectedCar] = useState("");
+    const [cars, setCars] = useState([]);
     const [error, setError] = useState("");
-    const location = useLocation(); // Obtener la ubicación
-    const userRole = location.state ? location.state.userRole : null; // Verificar y obtener userRole
-  
-    const handleCarClick = (carModel) => {
-      const car = cars.find((car) => car.carModel === carModel);
-      setSelectedCar(car);
-    };
   
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch("https://github.com/Programacion-con-Tecnologias-Web/Parcial1PracticaWeb/blob/main/parcial1web/src/views/data.json");
+          const response = await fetch("https://my.api.mockaroo.com/login.json?key=16ada500");
           if (!response.ok) {
             throw new Error("Error al obtener los carros");
           }
@@ -40,23 +30,12 @@ function Home() {
             <Row>
               {cars.map((car) => (
                 <Col md={3} key={car.carModel}>
-                  <Card
-                    className={`car-card ${
-                      selectedCar && selectedCar.carModel === car.carModel ? "selected" : ""
-                    }`}
-                  >
+                  <Card className="car-card">
                     <Card.Img variant="top" src={car.image} alt={car.carModel} />
                     <Card.Body>
-                      <Card.Title>{car.partName}</Card.Title>
-                      <Link
-                        to={`/car/${car.carModel}`}
-                        state={{ car, userRole }}
-                        className="car-link"
-                      >
-                        <Button
-                          variant="primary"
-                          onClick={() => handleCarClick(car.carModel)}
-                        >
+                      <Card.Title>{car.carModel}</Card.Title>
+                      <Link to={`/car/${car.carModel}`} className="car-link">
+                        <Button variant="primary">
                           Ver Detalles
                         </Button>
                       </Link>
